@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- displays site properly based on user's device -->
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+
+    <title>Frontend Mentor | Expenses chart component</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Almarai:wght@400;700&family=Comfortaa:wght@300&family=DM+Sans:ital,wght@1,400;1,500&family=Lato:ital,wght@1,300&family=Lemonada&family=Nunito:ital,wght@1,200&family=Outfit:wght@400;500&family=Poppins:ital,wght@0,600;1,600&family=Rubik:wght@300&display=swap");
+      .attribution {
+        font-size: 11px;
+        text-align: center;
+      }
+      .attribution a {
+        color: hsl(228, 45%, 44%);
+      }
+      :root {
+        --soft-red: hsl(10, 79%, 65%);
+        --cyan: hsl(186, 34%, 60%);
+        --dark-brown: hsl(25, 47%, 15%);
+        --medium-brown: hsl(28, 10%, 53%);
+        --Cream: hsl(27, 66%, 92%);
+        --very-pale-orange: hsl(33, 100%, 98%);
+        --m-1: 0.25rem;
+        --m-2: 0.5rem;
+        --m-3: 1rem;
+      }
+      html {
+        font-size: 18px;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: var(--Cream);
+        font-family: "DM Sans", sans-serif;
+      }
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      .card {
+        width: 33.3%;
+      }
+      /* fold */
+      @media only screen and (max-width: 300px) {
+        html {
+          font-size: 10px !important;
+        }
+        .card {
+          width: 94%;
+        }
+      }
+      /* Extra small devices (phones, 600px and down) */
+      @media only screen and (max-width: 600px) {
+        .card {
+          width: 94%;
+        }
+      }
+
+      /* Small devices (portrait tablets and large phones, 600px and up) */
+      @media only screen and (min-width: 600px) {
+        .card {
+          width: 94%;
+        }
+      }
+
+      /* Medium devices (landscape tablets, 768px and up) */
+      @media only screen and (min-width: 768px) {
+        .card {
+          width: 80%;
+        }
+      }
+
+      /* Large devices (laptops/desktops, 992px and up) */
+      @media only screen and (min-width: 992px) {
+        .card {
+          width: 50%;
+        }
+      }
+
+      /* Extra large devices (large laptops and desktops, 1200px and up) */
+      @media only screen and (min-width: 1200px) {
+        .card {
+          width: 33.33%;
+        }
+      }
+      .header-card {
+        background-color: var(--soft-red);
+        border-radius: 0.8rem;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .muted-text {
+        color: var(--Cream);
+        margin-bottom: var(--m-1);
+        font-size: 0.8rem;
+      }
+      .price {
+        color: var(--very-pale-orange);
+        font-size: 1.4rem;
+      }
+      .circle {
+        border-radius: 50%;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+      .two-circle {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+      }
+      .circle.one-c {
+        border: 2px solid var(--very-pale-orange);
+        transform: translateX(50%);
+      }
+      .circle.two-c {
+        background-color: var(--dark-brown);
+      }
+      .main-card {
+        border-radius: 0.8rem;
+        padding: 1rem;
+        margin-top: var(--m-3);
+        background-color: white;
+      }
+      /* starting with grid */
+      .indicator {
+        width: 100%;
+        height: 90%;
+      }
+      .indicator-border {
+        border-radius: 0.4rem;
+      }
+      .indicator-soft-red {
+        background-color: var(--soft-red);
+      }
+      .indicator-cyan {
+        background-color: var(--cyan);
+      }
+      .grid-container {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        grid-template-rows: repeat(12, 0.25rem);
+        margin-top: var(--m-2);
+        padding: var(--m-2);
+        gap: var(--m-3);
+        border-bottom: 2px solid var(--Cream);
+      }
+      .col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      .col.first {
+        grid-row: 9/12;
+      }
+
+      .grid-text {
+        color: var(--medium-brown);
+        font-size: 0.8rem;
+      }
+      .col.second {
+        grid-row: 6/12;
+      }
+      .col.third {
+        grid-row: 3/12;
+      }
+      .col.fourth {
+        grid-row: 5/12;
+      }
+      .col.fifth {
+        grid-row: 8/12;
+      }
+      .col.sixth {
+        grid-row: 4/12;
+      }
+      .col.seventh {
+        grid-row: 7/12;
+      }
+      .final-content {
+        margin-top: var(--m-3);
+        padding: var(--m-3);
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+      .small-text {
+        font-size: 0.8rem;
+      }
+      .medium-brown {
+        color: var(--medium-brown);
+      }
+      .large-text {
+        margin: 0px !important;
+        font-size: 1.8rem;
+        line-height: 1.6rem;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <div class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        >Frontend Mentor</a
+      >. Coded by <a href="#">Your Name Here</a>.
+    </div> -->
+    <div class="card">
+      <div class="header-card">
+        <div class="text">
+          <p class="muted-text">My balance</p>
+          <p class="price">$921.48</p>
+        </div>
+        <div class="two-circle">
+          <div class="one-c circle"></div>
+          <div class="two-c circle"></div>
+        </div>
+      </div>
+      <div class="main-card">
+        <h4 class="main-card-title">Spending - Last 7 days</h4>
+        <div class="grid-container">
+          <div class="col first">
+            <div class="indicator indicator-border indicator-soft-red"></div>
+            <div class="grid-text">tue</div>
+          </div>
+          <div class="col second">
+            <div class="indicator indicator-border indicator-soft-red"></div>
+            <div class="grid-text">mon</div>
+          </div>
+          <div class="col third">
+            <div class="indicator indicator-border indicator-cyan"></div>
+            <div class="grid-text">wed</div>
+          </div>
+          <div class="col fourth">
+            <div class="indicator indicator-border indicator-soft-red"></div>
+            <div class="grid-text">thu</div>
+          </div>
+          <div class="col fifth">
+            <div class="indicator indicator-border indicator-soft-red"></div>
+            <div class="grid-text">fri</div>
+          </div>
+          <div class="col sixth">
+            <div class="indicator indicator-border indicator-soft-red"></div>
+            <div class="grid-text">sat</div>
+          </div>
+          <div class="col seventh">
+            <div class="indicator indicator-border indicator-soft-red"></div>
+            <div class="grid-text">sun</div>
+          </div>
+        </div>
+        <div class="final-content">
+          <div class="final-one">
+            <p class="medium-brown small-text" style="margin-bottom: 4px">
+              Total this month
+            </p>
+            <p class="large-text">$478.33</p>
+          </div>
+          <div class="final-two">
+            <p class="small-text">+2.4%</p>
+            <p class="medium-brown small-text">from last month</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
